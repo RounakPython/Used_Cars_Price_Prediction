@@ -177,7 +177,7 @@ body {
     <form action="{{ url_for('predict')}}"method="post">
     	<input type="text" class="form-field animation a3" name="Year" placeholder="Year e.g. 2015" required="required" /><br>
     	
-    	<select name='fuel' class="form-field animation a3" id='fuel'>
+    	<select name='fuel' class="form-field animation a3" id='fuel' required>
         <option value="" disabled selected>Fuel</option>
         <option value="Diesel">Diesel</option>
         <option value="Petrol">Petrol</option>
@@ -188,7 +188,7 @@ body {
 		<input type="text" class="form-field animation a3" name="Mileage" placeholder="Mileage(KMPL) e.g. 25.55" required="required" /><br>
         <input type="text" class="form-field animation a3" name="Km_Driven" placeholder="Kms Driven(Kms) e.g. 10000" required="required" /><br>
 		
-		<select name='owner' class="form-field animation a3" id='owner'>
+		<select name='owner' class="form-field animation a3" id='owner' required>
         <option value="" disabled selected>Owner</option>
         <option value="First Owner">First Owner</option>
         <option value="Second Owner">Second Owner</option>
@@ -197,14 +197,14 @@ body {
         <option value="Test Drive Car">Test Drive Car</option>
         </select><br>
         
-        <select name='seller' class="form-field animation a3" id='seller'>
-        <option value="" disabled selected>Seller_Type</option>
+        <select name='seller' class="form-field animation a3" id='seller' required>
+        <option value="" disabled selected>Seller Type</option>
         <option value="Dealer">Dealer</option>
         <option value="Individual">Individual</option>
         <option value="Trustmark Dealer">Trustmark Dealer</option>
         </select><br>
         
-        <select name='transmission' class="form-field animation a3" id='transmission'>
+        <select name='transmission' class="form-field animation a3" id='transmission' required>
         <option value="" disabled selected>Transmission</option>
         <option value="Manual">Manual</option>
         <option value="Automatic">Automatic</option>
