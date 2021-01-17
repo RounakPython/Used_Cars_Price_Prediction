@@ -1,7 +1,5 @@
 import numpy as np
-from flask import Flask, render_template, request
-import jsonify
-import requests
+from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
@@ -20,14 +18,14 @@ def predict():
     if request.method == 'POST':
         year = int(request.form['Year'])
         km_driven = float(request.form['Km_Driven'])
-        owner_ddn = request.form['Owner']
+        owner_ddn = request.form['owner']
         mileage = float(request.form['Mileage'])
         engine = float(request.form['Engine'])
         max_power = float(request.form['Max_Power'])
         seats = float(request.form['Seats'])
-        fuel_ddn = request.form['Fuel']
-        seller_ddn = request.form['Seller_Type']
-        transmission_ddn = request.form['Transmission']
+        fuel_ddn = request.form['fuel']
+        seller_ddn = request.form['seller']
+        transmission_ddn = request.form['transmission']
         
         if owner_ddn == 'First Owner':
             owner = 4
@@ -76,7 +74,7 @@ def predict():
 
     output = round(prediction[0], 2)
 
-    return render_template('index.html', prediction_text='Used vehicle selling price should be $ {}'.format(output))
+    return render_template('index.html', prediction_text='Used vehicle selling price should be {}'.format(output))
 
 
 if __name__ == "__main__":
