@@ -74,7 +74,7 @@ def predict():
 
     output = round(prediction[0], 2)
 
-    return render_template('index.html', prediction_text='Used vehicle selling price should be {}'.format(output))
+    return render_template('index.html', prediction_text='Used vehicle selling price should be {} Rupees.'.format(output))
 
 
 if __name__ == "__main__":
