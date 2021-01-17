@@ -1,70 +1,227 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html>
 <head>
   <meta charset="UTF-8">
   <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
-</head>
+<style>
+* { box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
-<body>
- <div class="login">
-	<h1>Used Vehicle Price Analysis</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
+
+.right {
+  flex: 1;
+  background-color: black;
+  transition: 1s;
+  background-image: url(https://static.alpineinsurance.ca/wp-content/uploads/2017/03/31162218/car-with-stacks-of-coins.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.header > h2 {
+  margin: 0;
+  color: #4f46a5;
+}
+
+.header > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(0,0,0,.4);
+}
+
+.form {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form > p {
+  text-align: right;
+}
+
+.form > p > a {
+  color: #000;
+  font-size: 14px;
+}
+
+.form-field {
+  height: 30px;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Rubik', sans-serif;
+  outline: 0;
+  transition: .2s;
+  margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 0.5px solid #008CBA;
+  font-size: 14px;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.a1 {
+  animation-delay: 2s;
+}
+
+.a2 {
+  animation-delay: 2.1s;
+}
+
+.a3 {
+  animation-delay: 2.2s;
+}
+
+.a4 {
+  animation-delay: 2.3s;
+}
+
+.a5 {
+  animation-delay: 2.4s;
+}
+
+.a6 {
+  animation-delay: 2.5s;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes left {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
+  }
+}
+</style>
+<div class="container">
+  <div class="left">
+    <div class="header">
+	<h2 class="animation a1">Used Vehicle Price Prediction</h2>
+    </div>
+    <div class="form">
+	<!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="Year" placeholder="Year e.g. 2015" required="required" /><br><br>
+    	<input type="text" class="form-field animation a3" name="Year" placeholder="Year e.g. 2015" required="required" /><br>
     	
-    	<select name='fuel' id='fuel'>
+    	<select name='fuel' class="form-field animation a3" id='fuel'>
         <option value="" disabled selected>Fuel</option>
         <option value="Diesel">Diesel</option>
         <option value="Petrol">Petrol</option>
         <option value="CNG">CNG</option>
         <option value="LPG">LPG</option>
-        </select><br><br>
+        </select><br>
         
-		<input type="text" name="Mileage" placeholder="Mileage(KMPL) e.g. 25.55" required="required" /><br><br>
-        <input type="text" name="Km_Driven" placeholder="Kms Driven(Kms) e.g. 10000" required="required" /><br><br>
+		<input type="text" class="form-field animation a3" name="Mileage" placeholder="Mileage(KMPL) e.g. 25.55" required="required" /><br>
+        <input type="text" class="form-field animation a3" name="Km_Driven" placeholder="Kms Driven(Kms) e.g. 10000" required="required" /><br>
 		
-		<select name='owner' id='owner'>
+		<select name='owner' class="form-field animation a3" id='owner'>
         <option value="" disabled selected>Owner</option>
         <option value="First Owner">First Owner</option>
         <option value="Second Owner">Second Owner</option>
         <option value="Third Owner">Third Owner</option>
         <option value="Fourth & Above Owner">Fourth & Above Owner</option>
         <option value="Test Drive Car">Test Drive Car</option>
-        </select><br><br>
+        </select><br>
         
-        <select name='seller' id='seller'>
+        <select name='seller' class="form-field animation a3" id='seller'>
         <option value="" disabled selected>Seller_Type</option>
         <option value="Dealer">Dealer</option>
         <option value="Individual">Individual</option>
         <option value="Trustmark Dealer">Trustmark Dealer</option>
-        </select><br><br>
+        </select><br>
         
-        <select name='transmission' id='transmission'>
+        <select name='transmission' class="form-field animation a3" id='transmission'>
         <option value="" disabled selected>Transmission</option>
         <option value="Manual">Manual</option>
         <option value="Automatic">Automatic</option>
-        </select><br><br>
+        </select><br>
         
-		<input type="text" name="Engine" placeholder="Engine(CC) e.g. 1200" required="required" /><br><br>
-		<input type="text" name="Max_Power" placeholder="Max_Power(bhp) e.g. 88.52" required="required" /><br><br>
-		<input type="text" name="Seats" placeholder="No of Seats e.g. 6" required="required" /><br><br>
+		<input type="text" class="form-field animation a3" name="Engine" placeholder="Engine(CC) e.g. 1200" required="required" /><br>
+		<input type="text" class="form-field animation a3" name="Max_Power" placeholder="Max_Power(bhp) e.g. 88.52" required="required" /><br>
+		<input type="text" class="form-field animation a3" name="Seats" placeholder="No of Seats e.g. 6" required="required" /><br>
 		
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" class="button button2 animation a6">Predict</button>
     </form>
 
-   <br>
-   <br>
-   {{ prediction_text }}
+   <text class="animation a6">{{ prediction_text }}</text>
 
- </div>
-
-
-</body>
+	</div>
+  </div>
+  <div class="right"></div>
+</div>
+</head>
 </html>
